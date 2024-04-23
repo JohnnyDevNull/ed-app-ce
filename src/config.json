@@ -1,0 +1,13 @@
+{
+  "appTitle": "Drinks App CE",
+  "features": {
+    "search": {
+      "byName": true,
+      "byIngredient": true,
+      "isAlcohol": true
+    },
+    "pager": {
+      "size": 10
+    }
+  }
+}
