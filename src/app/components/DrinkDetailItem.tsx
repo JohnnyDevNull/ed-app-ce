@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from 'react';
-import { IDrinkDetailItem } from '../types/drink-item.interface';
+import { IDrinkDetailItem } from '../types/DrinkItem.interface';
 import { getIngredientsFromItem } from '../util/getIngredientsFromItem';
 import { getInstructionsFromItem } from '../util/getInstructionsFromItem';
 

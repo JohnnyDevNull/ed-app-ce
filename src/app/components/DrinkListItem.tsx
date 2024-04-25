@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { IDrinkListItem } from '../types/drink-item.interface';
+import { IDrinkListItem } from '../types/DrinkItem.interface';
 
 interface IDrinkListItemProps {
   item: IDrinkListItem;
