@@ -56,7 +56,7 @@ export function App() {
   const onToggleSearch = () => setShowSearchBar(prev => !prev);
   const onSearchChange = (data: ISearchData) => setSearchData(data);
 
-  let content: any;
+  let content: JSX.Element | JSX.Element[];
 
   if (itemId) {
     content = <DrinkDetailItem itemId={itemId} />;
