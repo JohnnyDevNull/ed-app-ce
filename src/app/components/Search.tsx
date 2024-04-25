@@ -30,17 +30,17 @@ const Search: FunctionComponent<ISearchProps> = ({ data, onChange }) => {
 
   return <>
     {appConfig.features.search.byName && (
-      <div className="search-control">
+      <div className="search-control" data-testid="search-name">
         <input ref={searchName} onInput={onInputChange} type="text" className="search-input" placeholder="search by name" />
       </div>
     )}
     {appConfig.features.search.byIngredient && (
-      <div className="search-control">
+      <div className="search-control" data-testid="search-ingredient">
         <input ref={searchIngredient} onInput={onInputChange} type="text" className="search-input" placeholder="search by ingredient" />
       </div>
     )}
     {appConfig.features.search.isAlcohol && (
-      <div className="search-control">
+      <div className="search-control" data-testid="search-alcohol">
         <label className="alcohol-chk"><input ref={isAlcohol} onChange={onInputChange} type="checkbox" /> Alcoholic</label>
       </div>
     )}

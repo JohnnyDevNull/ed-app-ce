@@ -25,7 +25,7 @@ const DrinkDetailItem: FunctionComponent<IDrinkDetailItemProps> = ({ itemId }) =
   const ingredients = getIngredientsFromItem(itemData).map(iStr => <li key={iStr}>{iStr}</li>);
   const instructions = getInstructionsFromItem(itemData);
 
-  return <div>
+  return <div data-testid="drink-item-details">
     <h2>{itemData?.strDrink}</h2>
     <img src={itemData.strDrinkThumb} alt={itemData.strDrink} className="img-responsive" />
     <h3>Category:</h3>

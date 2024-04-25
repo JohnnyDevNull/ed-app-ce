@@ -15,15 +15,15 @@ interface IToolbarProps {
 
 const Toolbar: FunctionComponent<IToolbarProps> = ({ mode, onBackToList, onToggleSearch }) => {
   return <>
-    <div className="brand">{appConfig?.appTitle || 'App Title'}</div>
-    <div className="actions">
-      {mode === ToolbarMode.LIST && (
-        <button onClick={onBackToList} title="back to list">
+    <div className="brand" data-testid="toolbar-brand">{appConfig?.appTitle || 'App Title'}</div>
+    <div className="actions" data-testid="toolbar-actions">
+      {mode === ToolbarMode.DETAIL && (
+        <button onClick={onBackToList} title="back to list" data-testid="toolbar-action-back">
           <i className="fa-solid fa-backward"></i>
         </button>
       )}
-      {mode === ToolbarMode.DETAIL && isSearchEnabled() && (
-        <button onClick={onToggleSearch} title="search">
+      {mode === ToolbarMode.LIST && isSearchEnabled() && (
+        <button onClick={onToggleSearch} title="search" data-testid="toolbar-action-search">
           <i className="fa-solid fa-search"></i>
         </button>
       )}

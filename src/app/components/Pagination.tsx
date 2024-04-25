@@ -16,10 +16,10 @@ const Pagination: FunctionComponent<IPaginationProps> = ({
   totalItems
 }) => {
   return <>
-    <div className="pager-info">
+    <div className="pager-info" data-testid="pager-info">
       {pos} - {pos + step} / {totalItems}
     </div>
-    <div className="pager-actions">
+    <div className="pager-actions" data-testid="pager-actions">
       <button onClick={onPrev}>Prev</button>
       <button onClick={onNext}>Next</button>
     </div>
