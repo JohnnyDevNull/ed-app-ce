@@ -1,8 +1,8 @@
-import * as appConfig from '../../config.json';
+import { ConfigContextType } from '../context/ConfigContext';
 
-export function isSearchEnabled(): boolean {
-  if (appConfig?.features?.search != null) {
-    return Object.keys(appConfig.features.search).some((key) => (appConfig as any).features.search[key] === true);
+export function isSearchEnabled(config: ConfigContextType): boolean {
+  if (config?.features?.search != null) {
+    return Object.keys(config.features.search).some((key) => (config as any).features.search[key] === true);
   }
   return false;
 }

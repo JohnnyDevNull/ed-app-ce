@@ -1,6 +1,6 @@
-import { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { FunctionComponent, useContext, useEffect, useRef, useState } from 'react';
+import { ConfigContext } from '../context/ConfigContext';
 import { ISearchData } from '../types/SearchData.interface';
-import * as appConfig from '../../config.json';
 
 interface ISearchProps {
   data: ISearchData
@@ -8,6 +8,7 @@ interface ISearchProps {
 }
 
 const Search: FunctionComponent<ISearchProps> = ({ data, onChange }) => {
+  const config = useContext(ConfigContext);
   const [searchData, setSeachdata] = useState<ISearchData>(data)
 
   useEffect(() => {
@@ -29,17 +30,17 @@ const Search: FunctionComponent<ISearchProps> = ({ data, onChange }) => {
   }
 
   return <>
-    {appConfig.features.search.byName && (
+    {config?.features.search.byName && (
       <div className="search-control" data-testid="search-name">
         <input ref={searchName} onInput={onInputChange} type="text" className="search-input" placeholder="search by name" />
       </div>
     )}
-    {appConfig.features.search.byIngredient && (
+    {config?.features.search.byIngredient && (
       <div className="search-control" data-testid="search-ingredient">
         <input ref={searchIngredient} onInput={onInputChange} type="text" className="search-input" placeholder="search by ingredient" />
       </div>
     )}
-    {appConfig.features.search.isAlcohol && (
+    {config?.features.search.isAlcohol && (
       <div className="search-control" data-testid="search-alcohol">
         <label className="alcohol-chk"><input ref={isAlcohol} onChange={onInputChange} type="checkbox" /> Alcoholic</label>
       </div>

@@ -1,15 +1,14 @@
-import { FunctionComponent, useEffect, useState } from 'react';
-import * as appConfig from '../config.json';
+import { FunctionComponent, useContext, useEffect, useState } from 'react';
 import DrinkDetailItem from './components/DrinkDetailItem';
 import DrinkListItem from './components/DrinkListItem';
 import Pagination from './components/Pagination';
 import Search from './components/Search';
 import Toolbar, { ToolbarMode } from './components/Toolbar';
+import { ConfigContext } from './context/ConfigContext';
 import { IDrinkListItem } from './types/DrinkItem.interface';
 import { ISearchData } from './types/SearchData.interface';
 import { buildApiUrlBySearchData } from './util/buildApiUrlBySearchData';
 
-const pagerSize = appConfig?.features?.pager?.size || 10;
 const initialSearchData: ISearchData = {
   name: '',
   ingredient: '',
@@ -17,6 +16,9 @@ const initialSearchData: ISearchData = {
 };
 
 const App: FunctionComponent = () => {
+  const config = useContext(ConfigContext);
+  const pagerSize = config?.features?.pager?.size || 10;
+
   const [drinksList, setDrinksList] = useState([] as IDrinkListItem[]);
   const [pagerPos, setPagerPos] = useState(0);
   const [itemId, setItemId] = useState<number | null>(null);
