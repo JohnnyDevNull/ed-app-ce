@@ -43,7 +43,7 @@ const App: FunctionComponent = () => {
       const newPos = prevPagerPos + pagerSize;
       return (newPos < totalItemsCount) ? newPos : prevPagerPos;
     });
-  }, []);
+  }, [pagerSize, totalItemsCount]);
 
   const onPaginationPrev = useMemo(() => () => {
     setPagerPos(prevPagerPos => prevPagerPos ? prevPagerPos - pagerSize : 0);
