@@ -15,9 +15,15 @@ const Pagination: FunctionComponent<IPaginationProps> = ({
   onPrev,
   totalItems
 }) => {
+  const stepStart = pos;
+  let stepEnd = pos + step;
+  if (stepEnd > totalItems) {
+    stepEnd = totalItems;
+  }
+
   return <>
     <div className="pager-info" data-testid="pager-info">
-      {pos} - {pos + step} / {totalItems}
+      {stepStart} - {stepEnd} / {totalItems}
     </div>
     <div className="pager-actions" data-testid="pager-actions">
       <button onClick={onPrev}>Prev</button>
