@@ -4,6 +4,7 @@ import DrinkDetailItem from './components/DrinkDetailItem';
 import DrinkListItem from './components/DrinkListItem';
 import Pagination from './components/Pagination';
 import Search from './components/Search';
+import Toolbar, { ToolbarMode } from './components/Toolbar';
 import { IDrinkListItem } from './types/DrinkItem.interface';
 import { ISearchData } from './types/SearchData.interface';
 import { buildApiUrlBySearchData } from './util/buildApiUrlBySearchData';
@@ -68,19 +69,10 @@ export function App() {
   return (
     <main className="app-main">
       <div className="main-header">
-        <div className="brand">{ appConfig?.appTitle || 'App Title' }</div>
-        <div className="actions">
-          {itemId && (
-            <button onClick={onBackToList} title="back to list">
-              <i className="fa-solid fa-backward"></i>
-            </button>
-          )}
-          {!itemId && isSearchEnabled() && (
-            <button onClick={onToggleSearch} title="search">
-              <i className="fa-solid fa-search"></i>
-            </button>
-          )}
-        </div>
+        <Toolbar
+          mode={itemId ? ToolbarMode.DETAIL : ToolbarMode.LIST}
+          onBackToList={onBackToList}
+          onToggleSearch={onToggleSearch} />
       </div>
       {showSearchBar && (
         <div className="main-search">
