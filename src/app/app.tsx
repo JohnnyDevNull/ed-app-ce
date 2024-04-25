@@ -1,4 +1,4 @@
-import { FunctionComponent, useContext, useEffect, useState } from 'react';
+import { FunctionComponent, useContext, useEffect, useMemo, useState } from 'react';
 import DrinkDetailItem from './components/DrinkDetailItem';
 import DrinkListItem from './components/DrinkListItem';
 import Pagination from './components/Pagination';
@@ -37,25 +37,25 @@ const App: FunctionComponent = () => {
     })
   }, [searchData]);
 
-  const onPaginationNext = () => {
+  const onPaginationNext = useMemo( () => () => {
     setPagerPos(prevPagerPos => {
       const newPos = prevPagerPos + pagerSize;
       return (newPos < totalItemsCount) ? newPos : prevPagerPos;
     });
-  }
+  }, []);
 
-  const onPaginationPrev = () => {
+  const onPaginationPrev = useMemo(() => () => {
     setPagerPos(prevPagerPos => prevPagerPos ? prevPagerPos - pagerSize : 0);
-  }
+  }, [pagerSize]);
 
-  const onItemClick = (id: number) => {
+  const onItemClick = useMemo(() => (id: number) => {
     setShowSearchBar(false);
     setItemId(id);
-  };
+  }, []);
 
-  const onBackToList = () => setItemId(null);
-  const onToggleSearch = () => setShowSearchBar(prev => !prev);
-  const onSearchChange = (data: ISearchData) => setSearchData(data);
+  const onBackToList = useMemo(() => () => setItemId(null), []);
+  const onToggleSearch = useMemo(() => () => setShowSearchBar(prev => !prev), []);
+  const onSearchChange = useMemo( () => (data: ISearchData) => setSearchData(data), []);
 
   let content: JSX.Element | JSX.Element[];
 
