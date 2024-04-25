@@ -8,6 +8,7 @@ import { ConfigContext } from './context/ConfigContext';
 import { IDrinkListItem } from './types/DrinkItem.interface';
 import { ISearchData } from './types/SearchData.interface';
 import { buildApiUrlBySearchData } from './util/buildApiUrlBySearchData';
+import { calcPagerSize } from './util/calcPagerSize';
 
 const initialSearchData: ISearchData = {
   name: '',
@@ -17,7 +18,7 @@ const initialSearchData: ISearchData = {
 
 const App: FunctionComponent = () => {
   const config = useContext(ConfigContext);
-  const pagerSize = config?.features?.pager?.size || 10;
+  const pagerSize = calcPagerSize(config?.features?.pager?.size || 10);
 
   const [drinksList, setDrinksList] = useState([] as IDrinkListItem[]);
   const [pagerPos, setPagerPos] = useState(0);
