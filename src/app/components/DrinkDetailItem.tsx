@@ -19,7 +19,7 @@ const DrinkDetailItem: FunctionComponent<IDrinkDetailItemProps> = ({ itemId }) =
   }, [itemId]);
 
   if (!itemData) {
-    return <div>&nbsp</div>
+    return <div>&nbsp;</div>
   }
 
   const ingredients = getIngredientsFromItem(itemData).map(iStr => <li key={iStr}>{iStr}</li>);

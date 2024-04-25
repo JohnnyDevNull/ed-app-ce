@@ -5,7 +5,9 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build --base /ed-app-ce/",
-    "test": "nx test"
+    "test": "nx test",
+    "e2e": "nx e2e e2e",
+    "e2e:open": "nx open-cypress e2e"
   },
   "private": true,
   "dependencies": {

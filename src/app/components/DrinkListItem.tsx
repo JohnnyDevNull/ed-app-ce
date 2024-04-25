@@ -7,9 +7,9 @@ interface IDrinkListItemProps {
 }
 
 const DrinkListItem: FunctionComponent<IDrinkListItemProps> = ({ item, onItemClick }) => {
-  return <div className="drink-list-item" data-testid="drink-list-item">
+  return <div className="drink-list-item" data-testid="drink-list-item" onClick={() => onItemClick(item.idDrink)}>
     <img className="item-thumb" src={item.strDrinkThumb} alt={item.strDrink} />
-    <div className="item-text"><a href="./#" onClick={() => onItemClick(item.idDrink)}>{item.strDrink}</a></div>
+    <div className="item-text">{item.strDrink}</div>
   </div>
 }
 

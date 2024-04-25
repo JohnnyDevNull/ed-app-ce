@@ -125,6 +125,11 @@ button {
 .drink-list-item {
   display: flex;
   margin-bottom: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #efefef;
+  }
 
   &:last-child {
     margin-bottom: 0;
