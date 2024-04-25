@@ -1,5 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useEffect, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
+import * as appConfig from '../config.json';
 import DrinkDetailItem from './components/DrinkDetailItem';
 import DrinkListItem from './components/DrinkListItem';
 import Pagination from './components/Pagination';
@@ -8,22 +8,21 @@ import Toolbar, { ToolbarMode } from './components/Toolbar';
 import { IDrinkListItem } from './types/DrinkItem.interface';
 import { ISearchData } from './types/SearchData.interface';
 import { buildApiUrlBySearchData } from './util/buildApiUrlBySearchData';
-import * as appConfig from '../config.json';
-import { isSearchEnabled } from './util/isSearchEnabled';
 
 const pagerSize = appConfig?.features?.pager?.size || 10;
-const initialSearchData = {
+const initialSearchData: ISearchData = {
   name: '',
   ingredient: '',
   isAlcohol: false
-}
+};
 
-export function App() {
+const App: FunctionComponent = () => {
   const [drinksList, setDrinksList] = useState([] as IDrinkListItem[]);
   const [pagerPos, setPagerPos] = useState(0);
   const [itemId, setItemId] = useState<number | null>(null);
   const [showSearchBar, setShowSearchBar] = useState(false);
-  const [searchData, setSearchData] = useState<ISearchData>({...initialSearchData})
+  const [searchData, setSearchData] = useState<ISearchData>({...initialSearchData});
+
   const totalItemsCount = drinksList?.length || 0;
   const displayItems = drinksList?.slice(pagerPos, pagerPos + pagerSize) || [];
 
