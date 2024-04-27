@@ -9,7 +9,7 @@ interface ISearchProps {
 
 const Search: FunctionComponent<ISearchProps> = ({ data, onChange }) => {
   const config = useContext(ConfigContext);
-  const [searchData, setSeachdata] = useState<ISearchData>(data)
+  const [searchData, setSearchData] = useState<ISearchData>(data)
 
   useEffect(() => {
     const handler = setTimeout(() => onChange(searchData), 500);
@@ -26,23 +26,47 @@ const Search: FunctionComponent<ISearchProps> = ({ data, onChange }) => {
       ingredient: searchIngredient?.current?.value || '',
       isAlcohol: isAlcohol?.current?.checked || false
     };
-    setSeachdata(searchData);
+    setSearchData(searchData);
   }
 
   return <>
     {config?.features.search.byName && (
       <div className="search-control" data-testid="search-name">
-        <input ref={searchName} onInput={onInputChange} type="text" className="search-input" placeholder="search by name" />
+        <input
+          value={searchData.name}
+          ref={searchName}
+          onInput={onInputChange}
+          type="text"
+          className="search-input"
+          placeholder="search by name"
+          disabled={searchData.ingredient.length > 0}
+        />
       </div>
     )}
     {config?.features.search.byIngredient && (
       <div className="search-control" data-testid="search-ingredient">
-        <input ref={searchIngredient} onInput={onInputChange} type="text" className="search-input" placeholder="search by ingredient" />
+        <input
+          value={searchData.ingredient}
+          ref={searchIngredient}
+          onInput={onInputChange}
+          type="text"
+          className="search-input"
+          placeholder="filter by ingredient"
+          disabled={searchData.name.length > 0}
+        />
       </div>
     )}
     {config?.features.search.isAlcohol && (
       <div className="search-control" data-testid="search-alcohol">
-        <label className="alcohol-chk"><input ref={isAlcohol} onChange={onInputChange} type="checkbox" /> Alcoholic</label>
+        <label className="alcohol-chk">
+          <input
+            checked={searchData.isAlcohol}
+            ref={isAlcohol}
+            onChange={onInputChange}
+            type="checkbox"
+            disabled={searchData.name.length > 0 || searchData.ingredient.length > 0}
+          /> Alcoholic
+        </label>
       </div>
     )}
   </>
